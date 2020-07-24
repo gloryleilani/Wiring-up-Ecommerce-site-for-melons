@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+
+    
+{% if cart_list %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Melon Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for melon in cart_list %}
+        <tr>
+            <td>{{melon.common_name}}</td>
+            <td>{{melon.quantity}}</td>
+            <td>${{melon.price}}</td>
+            <td>${{melon.total_cost}}</td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Total: ${{order_total}}</h3>
+
+    <a href="/checkout" class="btn btn-large btn-primary">Check Out</a>
+
+{% else %}
+    <h3> There are no items in your cart. </h3>
+    <a href="/melons">Start shopping</a>
+{% endif %}
+
+{% endblock %}
